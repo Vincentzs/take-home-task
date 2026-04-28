@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d6" for="edge" attr.name="evidence" attr.type="string"/>
+<key id="d5" for="edge" attr.name="page" attr.type="long"/>
+<key id="d4" for="node" attr.name="design_pressure_psig" attr.type="double"/>
+<key id="d3" for="node" attr.name="description" attr.type="string"/>
+<key id="d2" for="node" attr.name="bbox" attr.type="string"/>
+<key id="d1" for="node" attr.name="page" attr.type="long"/>
+<key id="d0" for="node" attr.name="type" attr.type="string"/>
+<graph edgedefault="directed"><node id="F-715A">
+  <data key="d0">filter</data>
+  <data key="d1">0</data>
+  <data key="d2">1827,1529,2064,1737</data>
+</node>
+<node id="MV-715">
+  <data key="d0">unknown</data>
+  <data key="d1">0</data>
+  <data key="d2">2693,1914,2765,2042</data>
+</node>
+<node id="DZR-028">
+  <data key="d0">instrument</data>
+  <data key="d1">0</data>
+  <data key="d2">2974,1707,3050,1779</data>
+  <data key="d3">DZR</data>
+</node>
+<node id="P-745">
+  <data key="d0">pump</data>
+  <data key="d1">1</data>
+  <data key="d2">1171,79,1474,83</data>
+</node>
+<node id="V-745">
+  <data key="d0">vessel</data>
+  <data key="d1">2</data>
+  <data key="d2">388,673,619,709</data>
+  <data key="d4">300.0</data>
+</node>
+<node id="MV-745">
+  <data key="d0">unknown</data>
+  <data key="d1">1</data>
+  <data key="d2">2536,377,2647,453</data>
+  <data key="d4">300.0</data>
+</node>
+<node id="RV-5138">
+  <data key="d0">unknown</data>
+  <data key="d1">1</data>
+  <data key="d2">4372,579,4628,583</data>
+</node>
+<node id="BZR-22">
+  <data key="d0">instrument</data>
+  <data key="d1">1</data>
+  <data key="d2">2667,412,2727,480</data>
+  <data key="d3">Burner Actuator Recorder</data>
+  <data key="d4">300.0</data>
+</node>
+<node id="AC-746">
+  <data key="d0">air_cooled_exchanger</data>
+  <data key="d1">2</data>
+  <data key="d2">1721,1939,2039,1983</data>
+</node>
+<node id="E-742">
+  <data key="d0">heat_exchanger</data>
+  <data key="d1">2</data>
+  <data key="d2">2900,79,3199,83</data>
+</node>
+<node id="PL-2242">
+  <data key="d0">unknown</data>
+  <data key="d1">2</data>
+  <data key="d2">361,673,622,709</data>
+</node>
+<node id="MV-735">
+  <data key="d0">unknown</data>
+  <data key="d1">2</data>
+  <data key="d2">1865,1573,1901,1594</data>
+</node>
+<node id="CP-98">
+  <data key="d0">instrument</data>
+  <data key="d1">2</data>
+  <data key="d2">2853,2286,2895,2381</data>
+  <data key="d3">CP</data>
+</node>
+<edge source="P-745" target="V-745" id="0">
+  <data key="d5">1</data>
+  <data key="d6">249,82,4960,82</data>
+</edge>
+<edge source="MV-745" target="BZR-22" id="0">
+  <data key="d5">1</data>
+  <data key="d6">2507,442,3280,442</data>
+</edge>
+<edge source="AC-746" target="E-742" id="0">
+  <data key="d5">2</data>
+  <data key="d6">249,80,4960,80</data>
+</edge>
+<edge source="PL-2242" target="V-745" id="0">
+  <data key="d5">2</data>
+  <data key="d6">333,691,846,691</data>
+</edge>
+</graph></graphml>

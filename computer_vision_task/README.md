@@ -1,73 +1,91 @@
-# Computer Vision Assignment: P&ID Conversion & SOP Cross-Referencing
+# Computer Vision Take-Home: P&ID → Graph + SOP Cross-Reference
 
-## Overview
+Converts a P&ID PDF into a NetworkX graph and cross-references it
+against an SOP DOCX, emitting discrepancies, annotated page renderings,
+and a structured log.
 
-In this assignment, you will build a system that leverages computer vision techniques to analyze Piping & Instrumentation Diagrams (P&IDs) and convert them into a structured graph with attributes. In addition, your solution should cross-reference the extracted information with a provided Standard Operating Procedure (SOP) document to verify process consistency and flag any discrepancies in a logging format.
+## Quick start
 
-## Objectives
+```bash
+make install      # uv sync --extra dev (creates .venv, installs deps)
+make run          # runs full pipeline on data/p&id/diagram.pdf + data/sop/sop.docx
+```
 
-- **Input:**  
-  - A P&ID document at `data/pid/diagram.pdf`.
-  - An SOP document at `data/sop/sop.docx`.
+The first run downloads EasyOCR weights (~100MB) to `~/.EasyOCR/`.
 
-- **Functionality:**
-  - **P&ID to Graph Conversion:**  
-    - Process a P&ID image to extract key components (e.g., valves, pumps, sensors) and their connections (edges).
-    - Represent the extracted information as a graph where nodes represent components and edges represent the interconnections.
-    - Capture relevant attributes for each component (e.g., labels, types, specifications).
+Outputs land in `output/`:
 
-  - **SOP Cross-Referencing:**  
-    - Parse a provided SOP document to extract process steps, required components, or other pertinent details.
-    - Compare the graph derived from the P&ID with the SOP details.
-    - Identify and report any inconsistencies between the diagram and the SOP (e.g., missing components, mismatches in connections, or attribute differences).
+```
+output/
+├── graph.graphml          # open in Gephi/yEd or load via networkx.read_graphml
+├── report.md              # human-readable discrepancy report
+├── pipeline.log           # JSONL, one event per line
+└── annotated/
+    ├── page_0.png         # detected components + edges overlaid
+    ├── page_1.png
+    └── page_2.png
+```
 
-- **Output:**  
-  - A structured graph representation (e.g., using a format compatible with NetworkX or a similar library) that includes nodes with attributes and edges representing connections.
-  - A report or log that details the cross-referencing results, highlighting any discrepancies between the P&ID and the SOP.
+## Approach
 
+Classical CV + OCR-anchored tag detection. No ML model training, no
+GPU required. ISA-5.1 tag conventions drive component classification
+(see `src/pipeline/isa_lookup.py`). Pipeline is split into pure-function
+stages composed by a thin runner (`src/pipeline/runner.py`); per-page
+parallelism via `ProcessPoolExecutor`; errors flow as structured
+warnings rather than exceptions.
 
-## Project Setup and Technologies
+Real-world P&IDs introduce OCR corruption — hyphens read as underscores,
+digits as letters, multi-character prefixes split across two text boxes.
+The tag parser (`src/pipeline/stages/tags.py`) recovers these via:
+- Underscore-to-hyphen + uppercase normalisation.
+- A loose digit-confusion regex (Z↔7, O↔0, I/L↔1, S↔5, B↔8) used as a
+  fallback when the strict regex fails.
+- Adjacency-based prefix merging for tags split across two OCR boxes
+  (e.g. an isolated "F" + "715A" → "F-715A").
+- Sibling-prefix inference for orphan number tokens whose prefix was
+  entirely lost by OCR, anchored to a strict-match sibling tag with the
+  same number on the same page.
 
-- **Project Setup:**
-  - Use any programming language of your choice (Python is preferred).
-  - Write clean and modular code.
+Architecture, data shapes, error model, and testing strategy are
+documented in `docs/superpowers/specs/2026-04-27-pid-sop-design.md`.
 
-- **Technologies:**
-  - YOLO
-  - Tesseract
-  - OpenCV
-  - NetworkX
-  - PyTorch / TensorFlow
-  - HuggingFace
-  - LangChain / LangGraph
+## Development
 
-**None of the above technologies are required. Feel free to use any other technologies you want.**
+```bash
+make test         # unit tests only (fast)
+make test-all     # unit + integration (slow; loads OCR models)
+make lint
+make typecheck
+make ci           # lint + typecheck + test-all
+```
 
-## Help
+Stack: Python 3.12+, `uv` (deps), `ruff` (lint+format), `mypy --strict`,
+`pytest`, `opencv-python`, `easyocr`, `pypdfium2`, `python-docx`,
+`networkx`.
 
-If you want help/guidance, please reach out to me: aaryan@getinterface.ai.
-Also, if you are confused by what components in the documents represent, feel free to check out this [reference guide](https://kimray.com/sites/default/files/uploads/training-demos/Kimray%20How%20to%20Read%20an%20Oil%20%26%20Gas%20P%26ID%20Reference%20Guide.pdf)
+## Configuration
 
-## Bonus (Optional)
+Defaults live in `src/pipeline/config.py`. Override via:
 
-- Integrate a database or web service to store, query, and manage the graph data and SOP results.
-- Experiment with deep learning models to improve component detection and classification.
-- Develop a user interface (web-based or desktop) to visualize the generated graph and highlight mismatches with the SOP.
+- `config.toml` at the project root, e.g.
+  ```toml
+  dpi = 400
+  ocr_confidence_threshold = 0.5
+  max_workers = 4
+  ```
+- Environment variables: `PIPELINE_DPI=400 PIPELINE_MAX_WORKERS=4 make run`.
+
+## Assumptions
+
+- The SOP follows the structure in `data/sop/sop.docx`: an Operating
+  Limits / Design Limits table with one tag-bearing row per equipment.
+- ISA-5.1 tag conventions (e.g. `V-745`, `E-742`, `AC-746`).
+- Solid lines on the drawing represent process piping; dashed/dotted
+  lines are signal lines and are filtered out of the graph.
 
 ## Submission
 
-- **Repository:**  
-  Submit your solution via a GitHub repository or as a zipped project file.
-
-- **Documentation:**  
-  Ensure your repository includes a comprehensive README (like this one) that explains:
-  - How to install dependencies.
-  - How to run the solution.
-  - An overview of your approach and any assumptions made.
-  - Instructions for testing your implementation.
-
-- **Sample Data:**  
-  Include sample outputs and reports generated by your solution.
-
-## Good Luck!
-We're excited to see your implementation that balances technical prowess with elegant computer vision skills. Happy coding!
+The implementation plan that produced this code is at
+`docs/superpowers/plans/2026-04-27-pid-sop-pipeline.md`. The design
+spec is at `docs/superpowers/specs/2026-04-27-pid-sop-design.md`.
