@@ -1,10 +1,10 @@
-{"ts": 1777349285.7035892, "level": "INFO", "stage": "runner", "page": null, "code": "start", "message": "pipeline starting", "duration_ms": null}
-{"ts": 1777349285.903268, "level": "INFO", "stage": "pdf_loader", "page": null, "code": "pages_loaded", "message": "loaded 3 pages", "duration_ms": null}
-{"ts": 1777349329.315565, "level": "INFO", "stage": "runner", "page": 0, "code": "page_done", "message": "page 0: 3 components, 0 edges, 34 warnings", "duration_ms": null}
-{"ts": 1777349329.316563, "level": "INFO", "stage": "runner", "page": 1, "code": "page_done", "message": "page 1: 6 components, 2 edges, 48 warnings", "duration_ms": null}
-{"ts": 1777349329.31659, "level": "INFO", "stage": "runner", "page": 2, "code": "page_done", "message": "page 2: 7 components, 2 edges, 35 warnings", "duration_ms": null}
-{"ts": 1777349329.321167, "level": "INFO", "stage": "sop_parser", "page": null, "code": "sop_parsed", "message": "6 expected components", "duration_ms": null}
-{"ts": 1777349329.322405, "level": "INFO", "stage": "graph_builder", "page": null, "code": "graph_built", "message": "graph: 13 nodes, 4 edges", "duration_ms": null}
-{"ts": 1777349329.32288, "level": "INFO", "stage": "cross_reference", "page": null, "code": "report_written", "message": "7 discrepancies, 117 warnings", "duration_ms": null}
-{"ts": 1777349329.501302, "level": "INFO", "stage": "visualizer", "page": null, "code": "annotated_written", "message": "annotated pages written", "duration_ms": null}
-{"ts": 1777349329.501353, "level": "INFO", "stage": "runner", "page": null, "code": "done", "message": "pipeline complete in 43798 ms", "duration_ms": 43797.85545800041}
+{"ts": 1777354825.954942, "level": "INFO", "stage": "runner", "page": null, "code": "start", "message": "pipeline starting", "duration_ms": null}
+{"ts": 1777354826.166147, "level": "INFO", "stage": "pdf_loader", "page": null, "code": "pages_loaded", "message": "loaded 3 pages", "duration_ms": null}
+{"ts": 1777354868.956498, "level": "INFO", "stage": "runner", "page": 0, "code": "page_done", "message": "page 0: 3 components, 0 edges, 34 warnings", "duration_ms": null}
+{"ts": 1777354868.956625, "level": "INFO", "stage": "runner", "page": 1, "code": "page_done", "message": "page 1: 6 components, 2 edges, 48 warnings", "duration_ms": null}
+{"ts": 1777354868.956652, "level": "INFO", "stage": "runner", "page": 2, "code": "page_done", "message": "page 2: 7 components, 2 edges, 35 warnings", "duration_ms": null}
+{"ts": 1777354868.9626691, "level": "INFO", "stage": "sop_parser", "page": null, "code": "sop_parsed", "message": "6 expected components", "duration_ms": null}
+{"ts": 1777354868.9755268, "level": "INFO", "stage": "graph_builder", "page": null, "code": "graph_built", "message": "graph: 13 nodes, 4 edges", "duration_ms": null}
+{"ts": 1777354868.979124, "level": "INFO", "stage": "cross_reference", "page": null, "code": "report_written", "message": "7 discrepancies, 118 warnings", "duration_ms": null}
+{"ts": 1777354869.144263, "level": "INFO", "stage": "visualizer", "page": null, "code": "annotated_written", "message": "annotated pages written", "duration_ms": null}
+{"ts": 1777354869.1443279, "level": "INFO", "stage": "runner", "page": null, "code": "done", "message": "pipeline complete in 43190 ms", "duration_ms": 43189.810916999704}

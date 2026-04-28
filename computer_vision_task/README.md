@@ -18,6 +18,9 @@ Outputs land in `output/`:
 ```
 output/
 ├── graph.graphml          # open in Gephi/yEd or load via networkx.read_graphml
+├── graph.json             # node-link JSON (cytoscape.js / d3 / vis.js / jq)
+├── graph.dot              # Graphviz source; re-render with `dot -Kneato -Tsvg ...`
+├── graph.svg              # rendered topology (skipped with warning if `dot` missing)
 ├── report.md              # human-readable discrepancy report
 ├── pipeline.log           # JSONL, one event per line
 └── annotated/
@@ -25,6 +28,11 @@ output/
     ├── page_1.png
     └── page_2.png
 ```
+
+`graph.svg` is rendered by invoking the system `graphviz` binary
+(`brew install graphviz` on macOS). If unavailable, the pipeline emits a
+`dot_binary_missing` warning and skips the SVG — `graph.dot` and the
+other outputs are unaffected.
 
 ## Approach
 

@@ -122,6 +122,13 @@ def run_pipeline(
     per_page_graphs = [(sg.components, sg.edges) for sg in subgraphs]
     graph = graph_builder.assemble(per_page_graphs)
     graph_builder.write_graphml(graph, output_dir / "graph.graphml")
+    graph_builder.write_node_link_json(graph, output_dir / "graph.json")
+    dot_path = output_dir / "graph.dot"
+    graph_builder.write_dot(graph, dot_path)
+    graph_warnings: list[PipelineWarning] = []
+    svg_warning = graph_builder.render_svg(dot_path, output_dir / "graph.svg")
+    if svg_warning is not None:
+        graph_warnings.append(svg_warning)
     event(
         "graph_builder",
         f"graph: {graph.number_of_nodes()} nodes, {graph.number_of_edges()} edges",
@@ -131,7 +138,7 @@ def run_pipeline(
     all_components = [c for sg in subgraphs for c in sg.components]
     report = cross_reference.compare(all_components, expected)
 
-    extra_warnings = sop_warnings + [w for sg in subgraphs for w in sg.warnings]
+    extra_warnings = sop_warnings + [w for sg in subgraphs for w in sg.warnings] + graph_warnings
     md = cross_reference.render_report(report, extra_warnings=extra_warnings)
     (output_dir / "report.md").write_text(md, encoding="utf-8")
     event(

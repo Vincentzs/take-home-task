@@ -9,7 +9,7 @@
 | type_mismatch | 0 |
 | pressure_mismatch | 0 |
 | temperature_mismatch | 0 |
-| **warnings** | 117 |
+| **warnings** | 118 |
 
 ## Discrepancies
 
@@ -22,6 +22,9 @@
 - **[extra_in_diagram]** MV-735: present in P&ID but not referenced by SOP
 
 ## Warnings
+
+### graph_builder
+- `dot_binary_missing`: graphviz `dot` not found on PATH; skipping graph.svg
 
 ### tags
 - `unknown_prefix` (page 0): MV-715 prefix=MV

@@ -15,6 +15,7 @@ dependencies = [
     "networkx>=3.3",
     "Pillow>=10.4",
     "numpy>=1.26,<2.2",
+    "pydot>=3.0",
 ]
 
 [project.optional-dependencies]
@@ -52,7 +53,7 @@ files = ["src/pipeline", "tests"]
 plugins = []
 
 [[tool.mypy.overrides]]
-module = ["easyocr.*", "cv2.*", "pypdfium2.*", "docx.*", "networkx.*"]
+module = ["easyocr.*", "cv2.*", "pypdfium2.*", "docx.*", "networkx.*", "pydot.*"]
 ignore_missing_imports = true
 
 [tool.pytest.ini_options]

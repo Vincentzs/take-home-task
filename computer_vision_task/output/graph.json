@@ -1,0 +1,121 @@
+{
+  "directed": true,
+  "edges": [
+    {
+      "evidence": "249,82,4960,82",
+      "key": 0,
+      "page": 1,
+      "source": "P-745",
+      "target": "V-745"
+    },
+    {
+      "evidence": "2507,442,3280,442",
+      "key": 0,
+      "page": 1,
+      "source": "MV-745",
+      "target": "BZR-22"
+    },
+    {
+      "evidence": "249,80,4960,80",
+      "key": 0,
+      "page": 2,
+      "source": "AC-746",
+      "target": "E-742"
+    },
+    {
+      "evidence": "333,691,846,691",
+      "key": 0,
+      "page": 2,
+      "source": "PL-2242",
+      "target": "V-745"
+    }
+  ],
+  "graph": {},
+  "multigraph": true,
+  "nodes": [
+    {
+      "bbox": "1827,1529,2064,1737",
+      "id": "F-715A",
+      "page": 0,
+      "type": "filter"
+    },
+    {
+      "bbox": "2693,1914,2765,2042",
+      "id": "MV-715",
+      "page": 0,
+      "type": "unknown"
+    },
+    {
+      "bbox": "2974,1707,3050,1779",
+      "description": "DZR",
+      "id": "DZR-028",
+      "page": 0,
+      "type": "instrument"
+    },
+    {
+      "bbox": "1171,79,1474,83",
+      "id": "P-745",
+      "page": 1,
+      "type": "pump"
+    },
+    {
+      "bbox": "388,673,619,709",
+      "design_pressure_psig": 300.0,
+      "id": "V-745",
+      "page": 2,
+      "type": "vessel"
+    },
+    {
+      "bbox": "2536,377,2647,453",
+      "design_pressure_psig": 300.0,
+      "id": "MV-745",
+      "page": 1,
+      "type": "unknown"
+    },
+    {
+      "bbox": "4372,579,4628,583",
+      "id": "RV-5138",
+      "page": 1,
+      "type": "unknown"
+    },
+    {
+      "bbox": "2667,412,2727,480",
+      "description": "Burner Actuator Recorder",
+      "design_pressure_psig": 300.0,
+      "id": "BZR-22",
+      "page": 1,
+      "type": "instrument"
+    },
+    {
+      "bbox": "1721,1939,2039,1983",
+      "id": "AC-746",
+      "page": 2,
+      "type": "air_cooled_exchanger"
+    },
+    {
+      "bbox": "2900,79,3199,83",
+      "id": "E-742",
+      "page": 2,
+      "type": "heat_exchanger"
+    },
+    {
+      "bbox": "361,673,622,709",
+      "id": "PL-2242",
+      "page": 2,
+      "type": "unknown"
+    },
+    {
+      "bbox": "1865,1573,1901,1594",
+      "id": "MV-735",
+      "page": 2,
+      "type": "unknown"
+    },
+    {
+      "bbox": "2853,2286,2895,2381",
+      "description": "CP",
+      "id": "CP-98",
+      "page": 2,
+      "type": "instrument"
+    }
+  ]
+}

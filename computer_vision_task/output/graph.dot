@@ -1,0 +1,19 @@
+digraph {
+"F-715A" [type=filter, page=0, bbox="1827,1529,2064,1737"];
+"MV-715" [type=unknown, page=0, bbox="2693,1914,2765,2042"];
+"DZR-028" [type=instrument, page=0, bbox="2974,1707,3050,1779", description=DZR];
+"P-745" [type=pump, page=1, bbox="1171,79,1474,83"];
+"V-745" [type=vessel, page=2, bbox="388,673,619,709", design_pressure_psig=300.0];
+"MV-745" [type=unknown, page=1, bbox="2536,377,2647,453", design_pressure_psig=300.0];
+"RV-5138" [type=unknown, page=1, bbox="4372,579,4628,583"];
+"BZR-22" [type=instrument, page=1, bbox="2667,412,2727,480", description="Burner Actuator Recorder", design_pressure_psig=300.0];
+"AC-746" [type="air_cooled_exchanger", page=2, bbox="1721,1939,2039,1983"];
+"E-742" [type="heat_exchanger", page=2, bbox="2900,79,3199,83"];
+"PL-2242" [type=unknown, page=2, bbox="361,673,622,709"];
+"MV-735" [type=unknown, page=2, bbox="1865,1573,1901,1594"];
+"CP-98" [type=instrument, page=2, bbox="2853,2286,2895,2381", description=CP];
+"P-745" -> "V-745" [key=0, page=1, evidence="249,82,4960,82"];
+"MV-745" -> "BZR-22" [key=0, page=1, evidence="2507,442,3280,442"];
+"AC-746" -> "E-742" [key=0, page=2, evidence="249,80,4960,80"];
+"PL-2242" -> "V-745" [key=0, page=2, evidence="333,691,846,691"];
+}
